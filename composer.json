@@ -1,0 +1,23 @@
+{
+    "name": "silangtech/silangweb",
+    "description" : "项目示例",
+    "type": "application",
+    "keywords": ["SilangPHP","web示例"],
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "shengsheng",
+            "email": "9448923@qq.com"
+        }
+    ],
+    "require": {
+        "php": ">=7.1.0",
+        "silangtech/silangphp": "dev-master"
+    },
+    "_comment": "SilangPHP",
+    "autoload": {
+        "psr-4": {
+            "App\\": "App/"
+        }
+    }
+}
