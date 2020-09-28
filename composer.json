@@ -10,6 +10,7 @@
             "email": "9448923@qq.com"
         }
     ],
+    "minimum-stability": "dev",
     "require": {
         "php": ">=7.1.0",
         "silangtech/silangphp": "dev-master"
