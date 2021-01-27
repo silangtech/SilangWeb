@@ -1,17 +1,44 @@
 <?php
 namespace App\Controller;
 
+use App\Middleware\HelloMiddleware;
+use App\Middleware\TestMiddleware;
 use App\Model\IndexModel;
-use SilangPHP\Tpl;
-use SilangPHP\Cache;
+use Illuminate\Database\Capsule\Manager as Capsule;
+use Illuminate\Container\Container;
 
 class IndexController extends \SilangPHP\Controller
 {
-    public function index(\SilangPHP\Request $request)
+    public $middlewares = [HelloMiddleware::class,TestMiddleware::class];
+    public $onlyAction = [];
+    public $exceptAction = [];
+    public function beforeAction($action = '')
     {
-        $tmp = $this->request->get("test","",'int');
-        echo $tmp;
-        Tpl::assign("test","test1");
-        Tpl::display('index');
+
     }
+
+    public function index(\SilangPHP\Request $request,$a = 'test')
+    {
+
+        $data = \SilangPHP\Tpl::display("index");
+        return $data;
+    }
+
+    public function index2($tt = '123')
+    {
+        
+    }
+
+    public function sessiontest()
+    {
+        \SilangPHP\Session::start();
+        \SilangPHP\Session::set("a1234",1234);
+        $tmp = \SilangPHP\Session::get("a1234");
+        var_dump($tmp);
+
+        setcookie("test","1234");
+        var_dump($_COOKIE);
+    }
+
+
 }
