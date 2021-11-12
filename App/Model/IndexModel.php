@@ -1,11 +1,9 @@
 <?php
 namespace App\Model;
 
-use SilangPHP\Model;
-
-class IndexModel extends Model
+class IndexModel extends \App\Support\Model
 {
-    protected $connection = 'master';
+    protected $connection = 'default';
     // public $table_name = 'users';
     protected $table = 'users';
     public $primaryKey = 'userid';

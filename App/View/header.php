@@ -1,4 +1,4 @@
 <html>
 <head>
-    <title>phpshow</title>
+    <title>SilangPHP</title>
 </head>

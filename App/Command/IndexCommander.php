@@ -5,8 +5,9 @@ namespace App\Command;
 class IndexCommander
 {
     public $input;
-    public function cli()
+    public function Index()
     {
         echo "run index->cli command";
+        var_dump($this->input);
     }
 }

@@ -5,8 +5,8 @@
  */
 define("PS_ROOT_PATH",       dirname(dirname(__FILE__)));
 require_once(PS_ROOT_PATH."/vendor/autoload.php");
-define('SLPHP_HTTPMODE', 0);
 
 // 设置应用地址
 \SilangPHP\SilangPHP::setAppDir(PS_ROOT_PATH.'/App');
-\SilangPHP\SilangPHP::run("command");
+
+\SilangPHP\SilangPHP::runCmd($argv[1] ?? '', $argv[2] ?? '');

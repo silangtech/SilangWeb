@@ -6,20 +6,12 @@
 return [
     'mysql' => [
         //相当于default
-        'master' => [
-            'host' => '172.20.0.77',
-            'port' => '3306',
-            'dbname' => 'phpshow',
-            'username' => 'root',
-            'password' => 'root',
+        'default' => [
+            'host' => getenv('mysql_host', '172.17.0.4'),
+            'port' => getenv('port', '3306'),
+            'dbname' => getenv('dbname', 'phpshow'),
+            'username' => getenv('mysql_username', 'root'),
+            'password' => getenv('mysql_password', 'root'),
         ],
-    ],
-    'redis' => [
-        'master' => [
-            'host' => '172.20.0.5',
-            'port' => '6379',
-            'db' => '0',
-            'auth' => '',
-        ]
-    ],
+    ]
 ];
