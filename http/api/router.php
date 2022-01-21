@@ -1,13 +1,13 @@
 <?php
-namespace App;
+namespace sapp;
 use \SilangPHP\Route;
 
 class Router
 {
     public static function initialize()
     {
-        Route::addRoute('GET', '/', '\\App\\Controller\\IndexController@Index');
-        Route::addRoute('GET', '/home', '\\App\\Controller\\IndexController@Index');
+        Route::addRoute('GET', '/', '\\sapp\\http\\api\\controller\\index@Index');
+        Route::addRoute('GET', '/home', '\\sapp\\http\\api\\controller\\index@Index');
 
         Route::addGroup('/silangphp', function(){
             Route::addRoute('GET', '/{id:\d+}',function ($id='1',$c=null){

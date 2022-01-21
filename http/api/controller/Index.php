@@ -1,7 +1,7 @@
 <?php
-namespace App\Controller;
+namespace sapp\http\api\index;
 
-class IndexController extends \App\Support\Controller
+class index
 {
     public function index($c, $id = '1234')
     {

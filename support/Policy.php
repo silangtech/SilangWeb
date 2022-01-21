@@ -1,5 +1,5 @@
 <?php
-namespace App\Support;
+namespace sapp\support;
 /**
  * 权限控制
  * Author:shengsheng

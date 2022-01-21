@@ -14,76 +14,40 @@
 +-----------------------------------------------------------------------+
 */
 declare(strict_types=1);
-namespace App\Support;
+namespace sapp\support;
 
-// use SilangPHP\Db\Medoo;
-use Illuminate\Database\QueryException;
 use Illuminate\Database\Eloquent\Model as Eloquent_Model;
 use Illuminate\Database\Capsule\Manager as Capsule;
+use Illuminate\Database\QueryException;
 // use Illuminate\Events\Dispatcher;
 // use Illuminate\Container\Container;
 
 class Model extends Eloquent_Model
 {
     //表格名
-    public $table_name = "";
+    public $table = "";
     //每页条数
     public $limit = 20;
-    //指定数据库 又名connection
-    public $database = '';
-    public $connection_name = '';
-    //指定数据库名
-    public $db_name = '';
+    //指定数据库 database
+    public $connection = '';
     //当前页数
     public $page = 1;
     //主键
-    // primaryKey primary_key
     public $primaryKey = 'id';
     //数据库类型，暂时只支持mysql
-    public $db_type = 'mysql';
-    //查询字段
     public $fields = '*';
     //表格数据
     public $attr;
-    public $conn_status = false;
     public $timestamps = false;
     public function __construct(array $attributes = [])
     {
         try{
             //自动效验表格名
-            $this->table();
-            $this->connection = $this->connection_name = $this->connection ?? $this->database;
-            $prikey = $this->primary_key ?? $this->primaryKey;
-            $this->setKeyName($prikey);
             parent::__construct($attributes);
-            $this->conn_status = true;
-        }catch(Exception $e)
+        }catch(\Exception $e)
         {
-            $this->conn_status = false;
             throw new \PDOException($e->getMessage());
         }
-    }
-
-    /**
-     * 数据库名
-     * @return string
-     */
-    public function table($table_name = ''){
-        if(!empty($this->table))
-        {
-            $this->table_name = $this->table;
-        }
-        if(!empty($table_name))
-        {
-            $this->table_name = $table_name;
-        }
-        if($this->table_name === ""){
-            $table_name = get_called_class();
-            $table_name = str_replace(["mod_","Model"], "", $table_name);
-            $this->table_name = $table_name;
-        }
-        $this->table = $this->table_name;
-        return $this;
     }
 
     public function recordError($e)
@@ -101,7 +65,7 @@ class Model extends Eloquent_Model
     public function get_sql_one($sql)
     {
         try{
-            $data = Capsule::connection($this->connection_name)->selectOne($sql);
+            $data = Capsule::connection($this->connection)->selectOne($sql);
             $data = json_decode(json_encode($data), true);
             return $data;
         }catch (QueryException $e) {
@@ -116,7 +80,7 @@ class Model extends Eloquent_Model
     public function get_sql_all($sql)
     {
         try{
-            $data = Capsule::connection($this->connection_name)->select($sql);
+            $data = Capsule::connection($this->connection)->select($sql);
             $data = json_decode(json_encode($data), true);
             return $data;
         }catch (QueryException $e) {
@@ -145,7 +109,7 @@ class Model extends Eloquent_Model
      * get_one
      */
     public function get_one($where = [])
-    {   
+    {
         try{
             $tmp = self::where($where)->select($this->fields)->first();
             $this->fields = '*';
@@ -157,8 +121,7 @@ class Model extends Eloquent_Model
         }catch (QueryException $e) {
             $this->recordError($e);
             return false;
-        }                                              
-        
+        }
     }
 
     /**
@@ -232,7 +195,7 @@ class Model extends Eloquent_Model
             return false;
         }
     }
-    
+
 	/**
      * 执行sql
      * @param $attrs
@@ -240,13 +203,13 @@ class Model extends Eloquent_Model
     public function query1($sql)
     {
         try{
-            $result = Capsule::connection($this->connection_name)->statement($sql);
+            $result = Capsule::connection($this->connection)->statement($sql);
             return $result;
         }catch (QueryException $e) {
             $this->recordError($e);
             return false;
         }
-        
+
     }
 
     /**
@@ -262,7 +225,7 @@ class Model extends Eloquent_Model
             $this->recordError($e);
             throw $e;
         }
-        
+
     }
 
     /**
@@ -285,5 +248,4 @@ class Model extends Eloquent_Model
         $order[$sort_field['0']] = $sort_type;
         return $order;
     }
-
 }

@@ -18,7 +18,7 @@
     "_comment": "SilangPHP",
     "autoload": {
         "psr-4": {
-            "App\\": "App/"
+            "sapp\\": "./"
         }
     }
 }

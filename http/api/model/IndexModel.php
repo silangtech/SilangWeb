@@ -1,10 +1,9 @@
 <?php
-namespace App\Model;
+namespace sapp\http\api\model;
 
-class IndexModel extends \App\Support\Model
+class IndexModel extends \sapp\support\Model
 {
     protected $connection = 'default';
-    // public $table_name = 'users';
     protected $table = 'users';
     public $primaryKey = 'userid';
 }

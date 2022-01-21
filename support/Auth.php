@@ -1,17 +1,17 @@
 <?php
-namespace App\Support;
+namespace sapp\support;
 
 class authuser{
     public $userid = null;
     public $roleid = null;
     public $backendName = 'Admin/';
-    //  \App\Model\Admin\AdminRoleModel
+    //  \mg\model\admin\AdminRoleModel
     public $roleModel = null;
     public function __construct($auth, $roleModel = null)
     {
         if(is_null($roleModel))
         {
-            $roleModel = new \App\Model\Admin\AdminRoleModel();
+            $roleModel = new \mg\model\admin\AdminRoleModel();
         }
         $this->auth = $auth;
         if(isset($this->auth->userid))

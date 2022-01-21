@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Support;
+namespace sapp\support;
 
 class Rsa
 {

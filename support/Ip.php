@@ -13,7 +13,7 @@
 | Supports: http://www.github.com/silangtech/SilangPHP                  |
 +-----------------------------------------------------------------------+
 */
-namespace App\Support;
+namespace sapp\support;
 
 
 class Ip

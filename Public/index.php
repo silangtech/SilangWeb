@@ -7,6 +7,6 @@ define("PS_CONFIG_PATH",     PS_ROOT_PATH."/Config/");
 define("PS_RUNTIME_PATH",	 PS_ROOT_PATH."/Runtime/");
 require_once(PS_ROOT_PATH."/vendor/autoload.php");
 
-\App\Router::initialize();
+\sapp\http\api\router::initialize();
 
 \SilangPHP\SilangPHP::run();

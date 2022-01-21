@@ -1,5 +1,5 @@
 <?php
-namespace App\Support;
+namespace sapp\support;
 
 /**
  * 分页辅助类

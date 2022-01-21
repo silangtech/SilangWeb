@@ -4,9 +4,7 @@
  * proxy模式
  */
 define("PS_ROOT_PATH",       dirname(dirname(__FILE__)));
+define("PS_CONFIG_PATH",     PS_ROOT_PATH."/config/");
+define("PS_RUNTIME_PATH",	 PS_ROOT_PATH."/runtime/");
 require_once(PS_ROOT_PATH."/vendor/autoload.php");
-
-// 设置应用地址
-\SilangPHP\SilangPHP::setAppDir(PS_ROOT_PATH.'/App');
-
 \SilangPHP\SilangPHP::runCmd($argv[1] ?? '', $argv[2] ?? '');
